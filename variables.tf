@@ -7,5 +7,19 @@ variable "instance_name" {
 variable "instance_type" {
   description = "The EC2 instance's type."
   type        = string
-  default     = "t2.micro"
+  default     = "t3.micro"
+}
+
+variable "aws_ami" {
+  description = "Konfiguracja obrazów AMI dla różnych systemów"
+  type = object({
+    ubuntu = object({
+      id = string
+    })
+  })
+  default = {
+    ubuntu = {
+      id = "ami-021aaf3749be66813"
+    }
+  }
 }
