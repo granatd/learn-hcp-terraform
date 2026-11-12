@@ -30,4 +30,15 @@ resource "aws_instance" "app_server" {
   tags = {
     Name = var.instance_name
   }
+
+  user_data = <<-EOF
+              #cloud-config
+              passwd:
+                users:
+                  - name: ubuntu
+                    plain_text_password: 'linux123'
+                    lock_passwd: false
+              chpasswd: { expire: False }
+              ssh_pwauth: True
+              EOF
 }
